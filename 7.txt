@@ -1,0 +1,35 @@
+
+ import pandas as pd
+def load_data(csv_file):
+  try:
+    data = pd.read_csv(csv_file)
+    return data
+  except FileNotFoundError:
+    print(f"File not found.Please check the file path")
+    return None
+  except pd.errors.EmptyDataError:
+    print("No data in file .Please check the file contents")
+    return None
+  except pd.errors.ParserError:
+    print("Error parsing file.please check the file format")
+    return None
+def analyze_data(data):
+  print("first few rows of data:")
+  print(data.head())
+  print("\n data types of each column.")
+  print(data.dtypes)
+  print("\n Summary statistics of data")
+  print(data.describe())
+  print("\n Count of missing values in each column")
+  print(data.isnull().sum())
+  print("\n Unique values in each column:")
+  for column in data.columns:
+    print(f"{column}:{data[column].unique()}")
+def main():
+    csv_file = "/content/sample_data/mnist_train_small.csv"
+    data = load_data(csv_file)
+    if data is not None:
+      analyze_data(data)
+if __name__=='__main__':
+    main()
+
