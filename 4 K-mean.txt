@@ -1,0 +1,38 @@
+newiris=iris
+head(newiris)
+
+pairs(newiris)
+newiris $Species=NULL
+newiris[1:5,]
+
+kc=kmeans(newiris,3,10)
+kc
+
+kc$cluster
+
+table(iris$Species,kc$cluster)
+
+plot (newiris[c ("Sepal.Length", "Sepal.Width")], col=kc$cluster) 
+pairs (newiris)
+points (kc$centers[,c("Sepal.Length", "Sepal.Width")], col=1:3,pch=8,cex=3)
+points (kc$centers[, c ("Sepal.Length", "Sepal.Width")], col=1:3,pch=8, cex=3)
+plot (newiris[c ("Sepal.Length", "Sepal.Width")], col=kc$cluster)
+points (kc$centers[,c("Sepal.Length", "Sepal.Width")], col=1:3,pch=8,cex=3)
+
+install.packages('factoextra',dependencies=TRUE)
+install.packages('tidyverse',dependencies=TRUE)
+install.packages('ggplot2',dependencies=TRUE)
+
+library('factoextra')
+library('tidyverse')
+library('ggplot2')
+
+fviz_cluster(kc,data=newiris)
+
+k2=kmeans(newiris,2.25)
+k3=kmeans(newiris,3.25)
+k4=kmeans(newiris,4.25)
+k5=kmeans(newiris,5.25)
+ggplot(aes(Sepal.Length,Sepal.Width,color=factor(cluster)))+geom_text()
+fviz_cluster(kc,data=newiris)
+

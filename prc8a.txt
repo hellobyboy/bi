@@ -1,0 +1,25 @@
+month	product A	product B	product C	Total Sales
+Jan	100	200	300	600
+Feb	100	200	100	400
+Mar	300	200	400	900
+Apr	400	600	300	1300
+May	100	500	200	800
+June	200	300	600	1100
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+data=pd.read_csv('/content/prc8.csv')
+df=pd.DataFrame(data)
+df.set_index('month',inplace=True)
+plt.figure(figsize=(10,6))
+
+plt.plot(df.index,df['product A'],label='product A') 
+plt.plot(df.index,df['product B'],label='product B')
+plt.plot(df.index,df['product C'],label='product C')
+
+plt.xlabel('month')
+plt.ylabel('Sales')
+plt.title('Monthly sales analysis')
+plt.legend()
+plt.show()
